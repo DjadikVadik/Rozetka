@@ -32,11 +32,14 @@
             }
         }
 
-        public static void Delete(User user)
+        public static void Delete(int id)
         {
             using (Context db = new Context())
             {
-                db.Users.Remove(user);
+                foreach (var user in db.Users)
+                {
+                    if (user.Id == id) db.Remove(user);
+                }
                 db.SaveChanges();
             }
         }
