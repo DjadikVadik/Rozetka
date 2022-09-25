@@ -6,11 +6,6 @@ namespace Rozetka.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(ILogger<WeatherForecastController> logger)
@@ -19,13 +14,13 @@ namespace Rozetka.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public IEnumerable<User> Get()
         {
-            return Enumerable.Range(1, 7).Select(index => new WeatherForecast
+            return Enumerable.Range(1, 2).Select(index => new User
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
+                Id = Operations.Read(index).Id,
+                Name = Operations.Read(index).Name,
+                Surname = Operations.Read(index).Surname,
             })
             .ToArray();
         }
