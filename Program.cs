@@ -1,6 +1,4 @@
-using Microsoft.Extensions.Options;
 
-namespace Rozetka;
 internal class Program
 {
     private static void Main(string[] args)
